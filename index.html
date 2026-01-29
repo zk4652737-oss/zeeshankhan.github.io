@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Zeeshan | Futuristic Interface</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeeshan Khan | Deep Interface</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg:#050508;
-    --glass:rgba(255,255,255,0.06);
-    --neon:#00ffe1;
+    --bg:#02040a;
+    --neon:#00fff0;
     --violet:#7f5cff;
-    --text:#e8fdf9;
-    --muted:#8a8f98;
+    --text:#e6fbff;
+    --muted:#6f7b88;
 }
 
 *{
@@ -22,29 +22,30 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+    height:100%;
 }
 
 body{
-    background:radial-gradient(circle at top,#0b0f1a,#050508 70%);
+    background:linear-gradient(#02040a,#000814 60%,#00020a);
     color:var(--text);
     font-family:Inter,system-ui;
     overflow-x:hidden;
 }
 
-/* CURSOR GLOW */
-.cursor{
+/* ===== CURSOR LIGHT ===== */
+.cursor-light{
     position:fixed;
     width:300px;
     height:300px;
-    background:radial-gradient(circle,rgba(0,255,225,.15),transparent 70%);
     pointer-events:none;
+    background:radial-gradient(circle,rgba(0,255,240,.18),transparent 65%);
+    mix-blend-mode:screen;
     transform:translate(-50%,-50%);
     z-index:0;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero{
     min-height:100vh;
     display:flex;
@@ -52,131 +53,125 @@ body{
     justify-content:center;
     text-align:center;
     position:relative;
+    overflow:hidden;
 }
 
 .hero h1{
     font-family:Orbitron;
-    font-size:64px;
-    letter-spacing:4px;
+    font-size:clamp(36px,9vw,90px);
+    letter-spacing:0.25em;
     background:linear-gradient(90deg,var(--neon),var(--violet));
     -webkit-background-clip:text;
     color:transparent;
+
+    transform:scale(0.2) translateY(300px);
+    opacity:0;
+    filter:blur(12px);
+    animation:arrival 2.2s ease-out forwards;
 }
 
 .hero p{
-    margin-top:20px;
+    margin-top:24px;
     color:var(--muted);
-    max-width:600px;
-    margin-left:auto;
-    margin-right:auto;
+    font-size:clamp(14px,4vw,18px);
+    opacity:0;
+    animation:fadeIn 1.5s ease forwards;
+    animation-delay:2s;
 }
 
-.scroll{
+/* ===== SCROLL DIVE ===== */
+.depth{
     position:absolute;
-    bottom:40px;
-    color:var(--muted);
-    font-size:14px;
+    inset:0;
+    background:
+        radial-gradient(circle at center,rgba(0,40,80,.25),transparent 60%),
+        linear-gradient(#02040a,#000814);
+    z-index:-1;
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 section{
     padding:120px 10%;
     position:relative;
-    z-index:1;
 }
 
 .glass{
-    background:var(--glass);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
     border-radius:20px;
     padding:40px;
-    box-shadow:0 0 80px rgba(0,255,225,0.08);
+    box-shadow:0 0 80px rgba(0,255,240,.12);
 }
 
-/* GRID */
+/* ===== GRID ===== */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:30px;
     margin-top:40px;
 }
 
 .card{
-    background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-    border-radius:16px;
+    background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));
     padding:30px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.1);
     transition:.4s;
-    border:1px solid rgba(255,255,255,.08);
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 40px rgba(127,92,255,.25);
+    transform:translateY(-12px);
+    box-shadow:0 0 60px rgba(127,92,255,.35);
 }
 
 .card h3{
     font-family:Orbitron;
-    margin-bottom:10px;
     color:var(--neon);
+    margin-bottom:10px;
 }
 
-/* NAME EFFECT */
-.name{
-    display:inline-block;
-    cursor:pointer;
-    position:relative;
+/* ===== ANIMATIONS ===== */
+@keyframes arrival{
+    to{
+        transform:scale(1) translateY(0);
+        opacity:1;
+        filter:blur(0);
+    }
 }
 
-.name::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-6px;
-    width:100%;
-    height:2px;
-    background:linear-gradient(90deg,var(--neon),var(--violet));
-    transform:scaleX(0);
-    transition:.3s;
+@keyframes fadeIn{
+    to{opacity:1;}
 }
 
-.name:hover::after{
-    transform:scaleX(1);
-}
-
-/* FOOTER */
-footer{
-    padding:60px;
-    text-align:center;
-    color:var(--muted);
-    font-size:14px;
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    section{
+        padding:80px 20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
+<div class="cursor-light"></div>
 
 <div class="hero">
+    <div class="depth"></div>
     <div>
-        <h1 class="name">ZEESHAN</h1>
-        <p>
-            A self-built interface.  
-            Written by hand.  
-            No templates. No noise.
-        </p>
+        <h1>ZEESHAN KHAN</h1>
+        <p>Restricted interface • Deep system • Silent power</p>
     </div>
-    <div class="scroll">Scroll ↓</div>
 </div>
 
 <section>
     <div class="glass">
-        <h2>Identity</h2>
+        <h2>System Identity</h2>
         <p>
-            This is not a portfolio.
-            This is a signal.
-            Clean structure, intentional silence, controlled motion.
+            This interface does not explain itself.
+            It reveals itself layer by layer.
+            Scroll is descent.
         </p>
     </div>
 </section>
@@ -184,32 +179,31 @@ footer{
 <section>
     <div class="grid">
         <div class="card">
-            <h3>Structure</h3>
-            <p>Everything has hierarchy. Nothing floats without purpose.</p>
+            <h3>Depth</h3>
+            <p>Information sinks. Noise floats.</p>
         </div>
         <div class="card">
-            <h3>Motion</h3>
-            <p>Movement exists only to guide attention, not steal it.</p>
+            <h3>Control</h3>
+            <p>Motion exists only when necessary.</p>
         </div>
         <div class="card">
             <h3>Future</h3>
-            <p>Minimal today. Expandable tomorrow. Infinite later.</p>
+            <p>Cold. Quiet. Intentional.</p>
         </div>
     </div>
 </section>
 
-<footer>
-    Built from nothing • Rendered by logic • Controlled by intent
+<footer style="padding:60px;text-align:center;color:var(--muted)">
+    Classified Interface • Level IX
 </footer>
 
 <script>
-const cursor=document.querySelector('.cursor');
+const light=document.querySelector('.cursor-light');
 document.addEventListener('mousemove',e=>{
-    cursor.style.left=e.clientX+'px';
-    cursor.style.top=e.clientY+'px';
+    light.style.left=e.clientX+'px';
+    light.style.top=e.clientY+'px';
 });
 </script>
 
 </body>
 </html>
-
