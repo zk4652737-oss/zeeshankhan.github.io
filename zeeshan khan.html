@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zeeshan | Futuristic Interface</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#050508;
+    --glass:rgba(255,255,255,0.06);
+    --neon:#00ffe1;
+    --violet:#7f5cff;
+    --text:#e8fdf9;
+    --muted:#8a8f98;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:radial-gradient(circle at top,#0b0f1a,#050508 70%);
+    color:var(--text);
+    font-family:Inter,system-ui;
+    overflow-x:hidden;
+}
+
+/* CURSOR GLOW */
+.cursor{
+    position:fixed;
+    width:300px;
+    height:300px;
+    background:radial-gradient(circle,rgba(0,255,225,.15),transparent 70%);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:0;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:64px;
+    letter-spacing:4px;
+    background:linear-gradient(90deg,var(--neon),var(--violet));
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    margin-top:20px;
+    color:var(--muted);
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.scroll{
+    position:absolute;
+    bottom:40px;
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* SECTIONS */
+section{
+    padding:120px 10%;
+    position:relative;
+    z-index:1;
+}
+
+.glass{
+    background:var(--glass);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 0 80px rgba(0,255,225,0.08);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.card{
+    background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+    border-radius:16px;
+    padding:30px;
+    transition:.4s;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 40px rgba(127,92,255,.25);
+}
+
+.card h3{
+    font-family:Orbitron;
+    margin-bottom:10px;
+    color:var(--neon);
+}
+
+/* NAME EFFECT */
+.name{
+    display:inline-block;
+    cursor:pointer;
+    position:relative;
+}
+
+.name::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,var(--neon),var(--violet));
+    transform:scaleX(0);
+    transition:.3s;
+}
+
+.name:hover::after{
+    transform:scaleX(1);
+}
+
+/* FOOTER */
+footer{
+    padding:60px;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<div class="hero">
+    <div>
+        <h1 class="name">ZEESHAN</h1>
+        <p>
+            A self-built interface.  
+            Written by hand.  
+            No templates. No noise.
+        </p>
+    </div>
+    <div class="scroll">Scroll ↓</div>
+</div>
+
+<section>
+    <div class="glass">
+        <h2>Identity</h2>
+        <p>
+            This is not a portfolio.
+            This is a signal.
+            Clean structure, intentional silence, controlled motion.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="grid">
+        <div class="card">
+            <h3>Structure</h3>
+            <p>Everything has hierarchy. Nothing floats without purpose.</p>
+        </div>
+        <div class="card">
+            <h3>Motion</h3>
+            <p>Movement exists only to guide attention, not steal it.</p>
+        </div>
+        <div class="card">
+            <h3>Future</h3>
+            <p>Minimal today. Expandable tomorrow. Infinite later.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    Built from nothing • Rendered by logic • Controlled by intent
+</footer>
+
+<script>
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+    cursor.style.left=e.clientX+'px';
+    cursor.style.top=e.clientY+'px';
+});
+</script>
+
+</body>
+</html>
